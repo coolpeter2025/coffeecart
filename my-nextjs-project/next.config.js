@@ -23,18 +23,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Disable static error pages generation
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    // Filter out error pages from static export
-    const filteredMap = { ...defaultPathMap };
-    delete filteredMap['/404'];
-    delete filteredMap['/500'];
-    delete filteredMap['/_error'];
-    return filteredMap;
-  },
+  // Disable static generation for specific paths
+  distDir: process.env.NODE_ENV === 'production' ? '.next-production' : '.next',
 };
 
 module.exports = nextConfig;
