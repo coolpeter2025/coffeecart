@@ -41,7 +41,7 @@ Exec-Command -Command "git status" -Description "Checking Git status"
 Exec-Command -Command "git add ." -Description "Adding all files to Git"
 
 # Commit changes
-Exec-Command -Command "git commit -m 'Initial commit with Supabase contact form integration'" -Description "Committing changes"
+Exec-Command -Command "git commit -m 'Fix Next.js version and configuration issues'" -Description "Committing changes"
 
 # Set the remote repository
 Exec-Command -Command "git remote set-url origin https://github.com/coolpeter2025/Delightful-Bean-Coffee-Cart.git" -Description "Setting remote repository"
