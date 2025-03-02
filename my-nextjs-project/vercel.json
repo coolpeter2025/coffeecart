@@ -1,8 +1,9 @@
 {
   "version": 2,
+  "framework": "nextjs",
   "builds": [
     {
-      "src": "package.json",
+      "src": "next.config.js",
       "use": "@vercel/next",
       "config": {
         "nextVersion": "14.2.24"
