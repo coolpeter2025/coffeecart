@@ -1,26 +1,13 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client with server-side environment variables
-// Use hardcoded URL as provided
+// Initialize Supabase client with hardcoded values
 const supabaseUrl = 'https://stagfacvrlrtstshuwux.supabase.co';
-const supabaseKey = process.env.SUPABASE_KEY || '';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0YWdmYWN2cmxydHN0c2h1d3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA4MTI0MTYsImV4cCI6MjA1NjM4ODQxNn0.kwkdfeOCQx5cnq98loS9pFPkdKHr2OKHdyy1p_PGFfc';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(request: Request) {
   try {
-    // Check if Supabase is properly configured
-    if (!supabaseKey) {
-      console.warn('Supabase not configured properly. Contact form will not work.');
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Contact form is not configured. Please set up Supabase environment variables.' 
-        },
-        { status: 503 }
-      );
-    }
-
     // Parse the request body
     const formData = await request.json();
     
