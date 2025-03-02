@@ -1,7 +1,8 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "buildCommand": "cd my-nextjs-project && NODE_OPTIONS='--max_old_space_size=4096' next build",
-  "outputDirectory": "my-nextjs-project/.next",
-  "installCommand": "npm install"
+  "buildCommand": "cd my-nextjs-project && NODE_OPTIONS='--max_old_space_size=4096 --no-warnings' NEXT_TELEMETRY_DISABLED=1 next build",
+  "outputDirectory": "my-nextjs-project/.next-production",
+  "installCommand": "npm install",
+  "ignoreCommand": "echo 'Skipping checks'"
 }
