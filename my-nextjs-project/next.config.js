@@ -8,7 +8,13 @@ const nextConfig = {
       },
     ],
   },
-  // Enable ISR for quick rebuilds
+  // Disable static error pages generation
+  output: 'standalone',
+  // Disable static optimization for error pages
+  experimental: {
+    disableOptimizedLoading: true,
+    optimizeCss: false
+  }
 };
 
 module.exports = nextConfig;
