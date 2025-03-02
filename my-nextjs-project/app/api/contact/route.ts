@@ -2,15 +2,15 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase client with server-side environment variables
-// Use placeholder values to allow build to complete
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-url.supabase.co';
-const supabaseKey = process.env.SUPABASE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
+// Use hardcoded URL as provided
+const supabaseUrl = 'https://stagfacvrlrtstshuwux.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(request: Request) {
   try {
     // Check if Supabase is properly configured
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !supabaseKey) {
+    if (!supabaseKey) {
       console.warn('Supabase not configured properly. Contact form will not work.');
       return NextResponse.json(
         { 
