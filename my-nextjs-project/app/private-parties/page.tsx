@@ -1,12 +1,7 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Private Party Coffee Cart Rental | Delightful Bean",
-  description: "Elevate your private party or corporate event with our premium coffee cart rental service in Tampa Bay, Florida. Professional baristas, custom drinks, and elegant presentation.",
-  keywords: ["private party coffee cart", "corporate event coffee", "coffee cart rental", "Tampa Bay", "Florida", "event barista", "mobile coffee service"],
-};
 
 // SVG Components
 const CheckIcon = () => (

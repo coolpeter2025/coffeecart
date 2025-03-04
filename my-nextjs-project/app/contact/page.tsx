@@ -1,13 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
-
-export const metadata: Metadata = {
-  title: "Contact Us | Delightful Bean Coffee Cart Rental",
-  description: "Contact Delightful Bean to book your coffee cart rental for birthdays, weddings, and private parties in Tampa Bay, Florida. Get a custom quote today!",
-  keywords: ["contact", "coffee cart rental", "Tampa Bay", "Florida", "book coffee cart", "barista service", "event coffee"],
-};
 
 export default function ContactPage() {
   return (

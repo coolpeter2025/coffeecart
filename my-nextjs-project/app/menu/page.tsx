@@ -1,11 +1,6 @@
-import Image from "next/image";
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Coffee Menu | Delightful Bean",
-  description: "Explore our delicious coffee menu options for your next event in Tampa Bay, Florida. Premium coffee drinks, specialty beverages, and more!",
-  keywords: ["coffee menu", "specialty coffee", "Tampa Bay", "Florida", "coffee cart menu", "event coffee options"],
-};
+import Image from "next/image";
 
 export default function MenuPage() {
   return (

@@ -1,11 +1,6 @@
-import Image from "next/image";
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Coffee Cart Gallery | Delightful Bean",
-  description: "View our coffee cart in action at various events in Tampa Bay, Florida. See how we can elevate your next event with our premium coffee service.",
-  keywords: ["coffee cart pictures", "event gallery", "Tampa Bay", "Florida", "coffee cart rental", "event photos"],
-};
+import Image from "next/image";
 
 export default function PicturesPage() {
   // Using images from our public folder

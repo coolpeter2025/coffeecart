@@ -1,12 +1,7 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Birthday Coffee Cart | Delightful Bean",
-  description: "Make your birthday celebration special with our premium coffee cart service in Tampa Bay, Florida. Professional baristas, custom drinks, and more!",
-  keywords: ["birthday coffee cart", "birthday party coffee", "coffee cart rental", "Tampa Bay", "Florida", "mobile coffee bar", "birthday celebration"],
-};
 
 // SVG Components
 const CheckIcon = () => (

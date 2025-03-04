@@ -1,12 +1,7 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Wedding Coffee Cart Rental | Delightful Bean",
-  description: "Elevate your wedding day with our premium coffee cart rental service in Tampa Bay, Florida. Professional baristas, custom wedding drinks, and elegant presentation.",
-  keywords: ["wedding coffee cart", "wedding coffee service", "coffee cart rental", "Tampa Bay", "Florida", "wedding barista", "wedding reception coffee"],
-};
 
 // SVG Components
 const CheckIcon = () => (
