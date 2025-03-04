@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import Link from "next/link";
+import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Error({
   error,
@@ -16,23 +16,22 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
-      <div className="text-center max-w-xl px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Something went wrong</h1>
-        <p className="text-lg mb-8">
-          We're sorry, but something went wrong on our end. Please try again later.
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <button
-            onClick={() => reset()}
-            className="btn btn-primary"
-          >
-            Try again
-          </button>
-          <Link href="/" className="btn btn-secondary">
-            Return to Homepage
-          </Link>
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-5 text-center">
+      <h1 className="text-4xl font-bold mb-4">Something went wrong!</h1>
+      <p className="mb-8">We apologize for the inconvenience.</p>
+      <div className="flex space-x-4">
+        <button
+          onClick={reset}
+          className="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
+        >
+          Try again
+        </button>
+        <Link 
+          href="/" 
+          className="px-6 py-3 bg-secondary text-white rounded-md hover:bg-secondary-dark transition-colors"
+        >
+          Return to Home
+        </Link>
       </div>
     </div>
   );

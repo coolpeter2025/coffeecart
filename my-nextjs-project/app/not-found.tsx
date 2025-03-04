@@ -1,22 +1,18 @@
-import Link from "next/link";
+"use client";
+
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
-      <div className="text-center max-w-xl px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Page Not Found</h1>
-        <p className="text-lg mb-8">
-          We're sorry, but the page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link href="/" className="btn btn-primary">
-            Return to Homepage
-          </Link>
-          <Link href="/contact" className="btn btn-secondary">
-            Contact Us
-          </Link>
-        </div>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-5 text-center">
+      <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
+      <p className="mb-8">The page you are looking for does not exist.</p>
+      <Link 
+        href="/" 
+        className="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
+      >
+        Return to Home
+      </Link>
     </div>
   );
 }
