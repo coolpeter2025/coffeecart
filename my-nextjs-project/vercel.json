@@ -14,5 +14,23 @@
   "env": {
     "NEXT_PUBLIC_SUPABASE_URL": "${NEXT_PUBLIC_SUPABASE_URL}",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY": "${NEXT_PUBLIC_SUPABASE_ANON_KEY}"
-  }
+  },
+  "routes": [
+    { 
+      "src": "/404", 
+      "dest": "/app/not-found.tsx" 
+    },
+    { 
+      "src": "/500", 
+      "dest": "/app/error.tsx" 
+    },
+    {
+      "src": "/contact",
+      "dest": "/app/contact/page.tsx",
+      "headers": {
+        "x-middleware-cache": "no-cache"
+      }
+    },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
 }

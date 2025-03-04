@@ -12,13 +12,6 @@ const nextConfig = {
   output: 'standalone',
   // Add trailing slash to force dynamic routing
   trailingSlash: true,
-  // Disable static optimization
-  experimental: {
-    disableOptimizedLoading: true,
-    optimizeCss: false,
-    // Disable static generation completely
-    serverComponentsExternalPackages: ['react', 'react-dom']
-  },
   // Skip type checking during build
   typescript: {
     ignoreBuildErrors: true,
@@ -33,8 +26,21 @@ const nextConfig = {
   compress: false,
   // Force all pages to be server-side rendered
   reactStrictMode: false,
-  // Disable static optimization
-  staticPageGenerationTimeout: 1,
+  // Disable static generation
+  generateEtags: false,
+  // Disable static generation completely
+  experimental: {
+    disableOptimizedLoading: true,
+    optimizeCss: false,
+    serverComponentsExternalPackages: ['react', 'react-dom'],
+    // Force pages to be dynamically rendered
+    appDir: true,
+    esmExternals: true,
+    // Ensure server components are properly handled
+    serverActions: true
+  },
+  // Set static page generation timeout to 0 to disable static generation
+  staticPageGenerationTimeout: 0
 };
 
 module.exports = nextConfig;
