@@ -1,16 +1,10 @@
 {
-  "buildCommand": "next build",
+  "buildCommand": "npm run vercel-build",
   "devCommand": "next dev",
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": ".next",
   "regions": ["iad1"],
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@vercel/next"
-    }
-  ],
   "env": {
     "NEXT_PUBLIC_SUPABASE_URL": "${NEXT_PUBLIC_SUPABASE_URL}",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY": "${NEXT_PUBLIC_SUPABASE_ANON_KEY}"
@@ -18,15 +12,15 @@
   "routes": [
     { 
       "src": "/404", 
-      "dest": "/app/not-found.tsx" 
+      "dest": "/not-found" 
     },
     { 
       "src": "/500", 
-      "dest": "/app/error.tsx" 
+      "dest": "/error" 
     },
     {
       "src": "/contact",
-      "dest": "/app/contact/page.tsx",
+      "dest": "/contact",
       "headers": {
         "x-middleware-cache": "no-cache"
       }

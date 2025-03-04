@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "next build"
+    "vercel-build": "node vercel-build.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.49.1",

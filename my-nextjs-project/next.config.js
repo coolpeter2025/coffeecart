@@ -34,10 +34,7 @@ const nextConfig = {
     optimizeCss: false,
     serverComponentsExternalPackages: ['react', 'react-dom'],
     // Force pages to be dynamically rendered
-    appDir: true,
-    esmExternals: true,
-    // Ensure server components are properly handled
-    serverActions: true
+    esmExternals: true
   },
   // Set static page generation timeout to 0 to disable static generation
   staticPageGenerationTimeout: 0
