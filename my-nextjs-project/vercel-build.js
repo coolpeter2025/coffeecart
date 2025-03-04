@@ -14,50 +14,52 @@ try {
   }
   
   // Create empty files for the problematic routes to prevent 404 errors
-  const outputDir = process.env.NODE_ENV === 'production' ? '.next-production' : '.next';
+  // We'll generate files for both directories to be safe
+  const outputDirs = ['.next-production', '.next'];
   
-  // Paths that caused errors
-  const problemPaths = [
-    path.join(outputDir, 'server/pages/404.html'),
-    path.join(outputDir, 'server/pages/500.html'),
-    path.join(outputDir, 'server/pages/contact.html')
-  ];
-  
-  // Create routes-manifest.json if it doesn't exist
-  const routesManifest = path.join(outputDir, 'routes-manifest.json');
-  if (!fs.existsSync(routesManifest)) {
-    const routesContent = {
-      version: 3,
-      basePath: "",
-      headers: [],
-      rewrites: [
-        { source: '/404', destination: '/not-found' },
-        { source: '/500', destination: '/error' },
-        { source: '/contact', destination: '/contact' }
-      ],
-      redirects: [],
-      catchAllRouting: true,
-      catchAllMiddleware: false
-    };
+  outputDirs.forEach(outputDir => {
+    // Paths that caused errors
+    const problemPaths = [
+      path.join(outputDir, 'server/pages/404.html'),
+      path.join(outputDir, 'server/pages/500.html'),
+      path.join(outputDir, 'server/pages/contact.html')
+    ];
     
-    const routesDir = path.dirname(routesManifest);
-    if (!fs.existsSync(routesDir)) {
-      fs.mkdirSync(routesDir, { recursive: true });
+    // Create routes-manifest.json if it doesn't exist
+    const routesManifest = path.join(outputDir, 'routes-manifest.json');
+    if (!fs.existsSync(routesManifest)) {
+      const routesContent = {
+        version: 3,
+        basePath: "",
+        headers: [],
+        rewrites: [
+          { source: '/404', destination: '/not-found' },
+          { source: '/500', destination: '/error' },
+          { source: '/contact', destination: '/contact' }
+        ],
+        redirects: [],
+        catchAllRouting: true,
+        catchAllMiddleware: false
+      };
+      
+      const routesDir = path.dirname(routesManifest);
+      if (!fs.existsSync(routesDir)) {
+        fs.mkdirSync(routesDir, { recursive: true });
+      }
+      
+      fs.writeFileSync(routesManifest, JSON.stringify(routesContent, null, 2));
+      console.log(`Created: ${routesManifest}`);
     }
     
-    fs.writeFileSync(routesManifest, JSON.stringify(routesContent, null, 2));
-    console.log(`Created: ${routesManifest}`);
-  }
-  
-  // Ensure directories exist
-  problemPaths.forEach(filePath => {
-    const dir = path.dirname(filePath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    
-    // Create a simple HTML file for each problematic path
-    const htmlContent = `<!DOCTYPE html>
+    // Ensure directories exist
+    problemPaths.forEach(filePath => {
+      const dir = path.dirname(filePath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      
+      // Create a simple HTML file for each problematic path
+      const htmlContent = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -72,37 +74,38 @@ try {
     <p>Redirecting...</p>
   </body>
 </html>`;
+      
+      try {
+        fs.writeFileSync(filePath, htmlContent);
+        console.log(`Created: ${filePath}`);
+      } catch (err) {
+        console.error(`Error creating ${filePath}:`, err);
+      }
+    });
     
-    try {
-      fs.writeFileSync(filePath, htmlContent);
-      console.log(`Created: ${filePath}`);
-    } catch (err) {
-      console.error(`Error creating ${filePath}:`, err);
+    // Create an empty build-manifest.json if it doesn't exist
+    const buildManifest = path.join(outputDir, 'build-manifest.json');
+    if (!fs.existsSync(buildManifest)) {
+      const buildManifestContent = {
+        polyfillFiles: [],
+        devFiles: [],
+        ampDevFiles: [],
+        lowPriorityFiles: [],
+        rootMainFiles: [],
+        pages: {
+          "/_app": [],
+          "/_error": [],
+          "/404": [],
+          "/500": [],
+          "/contact": []
+        },
+        ampFirstPages: []
+      };
+      
+      fs.writeFileSync(buildManifest, JSON.stringify(buildManifestContent, null, 2));
+      console.log(`Created: ${buildManifest}`);
     }
   });
-  
-  // Create an empty .next/build-manifest.json if it doesn't exist
-  const buildManifest = path.join(outputDir, 'build-manifest.json');
-  if (!fs.existsSync(buildManifest)) {
-    const buildManifestContent = {
-      polyfillFiles: [],
-      devFiles: [],
-      ampDevFiles: [],
-      lowPriorityFiles: [],
-      rootMainFiles: [],
-      pages: {
-        "/_app": [],
-        "/_error": [],
-        "/404": [],
-        "/500": [],
-        "/contact": []
-      },
-      ampFirstPages: []
-    };
-    
-    fs.writeFileSync(buildManifest, JSON.stringify(buildManifestContent, null, 2));
-    console.log(`Created: ${buildManifest}`);
-  }
   
   console.log('Build process completed with fixes for problematic routes.');
   
